@@ -142,6 +142,45 @@ function installation_process()
     echo "################################\n"
 }
 
+function display_palworld_settings() {
+    echo -e "
+    [00] - Difficulty 	                        Game difficulty level.\n
+    [01] - DayTimeSpeedRate 	                Day time progression speed. \n
+    [02] - NightTimeSpeedRate              	    Night time progression speed.\n
+    [03] - ExpRate 	                            Experience points rate.\n
+    [04] - PalCaptureRate 	                    Pal capture rate.\n
+    [05] - PalSpawnNumRate 	                    Pal appearance rate.\n
+    [06] - PalDamageRateAttack 	                Damage from Pals multiplier.\n
+    [07] - PalDamageRateDefense 	            Damage to Pals multiplier.\n
+    [08] - PlayerDamageRateAttack 	            Damage from player multiplier.\n
+    [09] - PlayerDamageRateDefense 	            Damage to player multiplier.\n
+    [10] - PlayerStomachDecreaceRate 	        Player hunger depletion rate.\n
+    [11] - PlayerStaminaDecreaceRate 	        Player stamina reduction rate.\n
+    [12] - PlayerAutoHPRegeneRate 	            Player HP regeneration rate.\n
+    [13] - PlayerAutoHpRegeneRateInSleep 	    Player HP regeneration during sleep.\n
+    [14] - PalStomachDecreaceRate          	    Pal hunger depletion rate.\n
+    [15] - PalStaminaDecreaceRate 	            Pal stamina reduction rate.\n
+    [16] - PalAutoHPRegeneRate 	                Pal HP regeneration rate.\n
+    [17] - PalAutoHpRegeneRateInSleep 	        Pal health regeneration in Palbox (sleep).\n
+    [18] - BuildObjectDamageRate 	            Structure damage multiplier.\n
+    [19] - BuildObjectDeteriorationDamageRate 	Structure deterioration rate.\n
+    [20] - CollectionDropRate 	                Gatherable items drop rate.\n
+    [21] - CollectionObjectHpRate 	            Gatherable objects HP rate.\n
+    [22] - CollectionObjectRespawnSpeedRate 	Gatherable objects respawn rate.\n
+    [23] - EnemyDropItemRate 	                Enemy item drop rate.\n
+    [24] - DeathPenalty 	                    Settings for death penalty.\n
+    [25] - GuildPlayerMaxNum 	                Guild player capacity.\n
+    [26] - PalEggDefaultHatchingTime 	        Time to hatch a massive egg.\n
+    [27] - ServerPlayerMaxNum              	    Server player capacity.\n
+    [28] - ServerName 	                        Server's name.\n
+    [29] - ServerDescription 	                Server description.\n
+    [30] - AdminPassword 	                    Administrator password.\n
+    [31] - ServerPassword 	                    Server access password.\n
+    [32] - PublicPort 	                        Public port number.\n
+    [33] - PublicIP 	                        Server's public IP\n"
+}
+
+
 function schedule_management()
 {
     # echo "# Palworld dedicated server is memory intensive, please follow this instruction:\n"
@@ -171,7 +210,11 @@ function schedule_management()
 
 function configuration_server()
 {
-    echo "This option is not supported for now\n"    
+    display_palworld_settings
+    read -p "Witch setting do you want modify [0-33]: " settingToModify
+
+    case "${settingToModify}" in
+
 }
 
 
@@ -182,14 +225,14 @@ function configuration_server()
 echo "# Welcome to the installation script\n"
 echo "# Please run this script with 'sudo'\n"
 echo "# \n"
-echo "# Please select one of these instructions, enter a number between [0-4]:\n"
+echo "\n"
 echo "# [0] - Fully Installation (recommanded if you never run this script before)\n"
 echo "# [1] - Only installation\n"
 echo "# [2] - Only schedule reboot management (all will be explain futher)\n"
 echo "# [3] - Only configuration server (the server need to be installed)\n"
 echo "# [4] - Exit\n"
 
-read user_decision
+read -p "# Please select one of these instructions, enter a number between [0-4]: " user_decision
 
 case "${user_decision}" in
     0)
