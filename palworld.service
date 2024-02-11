@@ -1,0 +1,15 @@
+[Unit]
+Description=Palworld Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=steam
+Group=steam
+WorkingDirectory=/home/steam/
+ExecStartPre=/usr/games/steamcmd +force_install_dir '/home/steam/Steam/steamapps/common/PalServer' +login anonymous +app_update 2394010 +quit
+ExecStart=/home/steam/Steam/steamapps/common/PalServer/PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS > /dev/null
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
